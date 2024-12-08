@@ -1,4 +1,4 @@
-# AIDA Bot DC
+# AIDA Bot
 
 AI-Enhanced Discord Assistant (AIDA)
 
@@ -6,7 +6,7 @@ AI-Enhanced Discord Assistant (AIDA)
 
 ## Description
 
-AIDA Bot DC is an AI-enhanced Discord bot that can handle text and image commands. It uses Grok X for generating text responses and Together AI for generating images.
+AI-Enhanced Discord Assistant (AIDA) Bot is an AI-enhanced Discord bot that can handle text and image commands. It uses Grok X for generating text responses and Together AI for generating images.
 
 ## Features
 
@@ -69,7 +69,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License.
-
-```
-
-```
