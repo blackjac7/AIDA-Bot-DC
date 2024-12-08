@@ -50,9 +50,17 @@ export class AIDABot {
 
     await message.channel.sendTyping();
     const response = await generateResponse(question);
-    const chunks = splitMessage(response);
-    for (const chunk of chunks) {
-      await message.reply(chunk);
+
+    // Jika panjang respons terlalu besar, bagi pesan menjadi beberapa bagian
+    if (response.length > 2000) {
+      // Membagi pesan hanya jika panjangnya lebih dari 2000 karakter
+      const chunks = splitMessage(response);
+      for (const chunk of chunks) {
+        await message.reply(chunk);
+      }
+    } else {
+      // Kirimkan seluruh respons dalam satu pesan
+      await message.reply(response);
     }
   }
 
