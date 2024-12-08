@@ -31,7 +31,18 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # Bagian CD: Set Heroku Config Vars
+      # Bagian CD: Install Heroku CLI
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+
+      # Bagian CD: Login ke Heroku menggunakan API Key
+      - name: Authenticate Heroku CLI
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          echo "$HEROKU_API_KEY" | heroku auth:login --stdin
+
+      # Bagian CD: Set Heroku Config Vars jika semua tes berhasil
       - name: Set Heroku Config Vars
         if: success() # Hanya dijalankan jika semua tes berhasil
         env:
