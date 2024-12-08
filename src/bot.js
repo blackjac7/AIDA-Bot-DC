@@ -33,9 +33,14 @@ export class AIDABot {
 
       try {
         if (message.content.startsWith(config.discord.imagePrefix)) {
-          await this.handleImageCommand(message);
+          await this.handleImageCommand(message); // Tangani perintah gambar
         } else if (message.content.startsWith(config.discord.prefix)) {
-          await this.handleTextCommand(message);
+          await this.handleTextCommand(message); // Tangani perintah teks
+        } else {
+          // Tambahkan respons untuk perintah yang tidak dikenali
+          await message.reply(
+            `Invalid command. Use \`${config.discord.prefix}\` for text commands or \`${config.discord.imagePrefix}\` for image commands.`
+          );
         }
       } catch (error) {
         console.error("Error handling message:", error);
