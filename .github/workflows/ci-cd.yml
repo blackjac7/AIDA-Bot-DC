@@ -1,0 +1,51 @@
+name: Node.js CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Bagian CI (Continuous Integration): Checkout kode dari repositori
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Bagian CI: Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Bagian CI: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Bagian CI: Jalankan semua tes untuk memastikan kode bebas bug
+      - name: Run tests
+        run: npm test
+
+      # Bagian CD: Set Heroku Config Vars jika semua tes berhasil
+      - name: Set Heroku Config Vars
+        if: success() # Hanya dijalankan jika semua tes berhasil
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          heroku config:set DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} \
+            GROK_API_KEY=${{ secrets.GROK_API_KEY }} \
+            TOGETHER_API_KEY=${{ secrets.TOGETHER_API_KEY }} --app aida-bot
+
+      # Bagian CD: Deploy ke Heroku jika semua tes berhasil
+      - name: Deploy to Heroku
+        if: success() # Hanya dijalankan jika semua tes berhasil
+        uses: akhileshns/heroku-deploy@v3.13.15
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "aida-bot"
+          heroku_email: "febriansyah705@gmail.com"
