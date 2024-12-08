@@ -1,0 +1,27 @@
+{
+  "name": "aida-bot-dc",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "AI-Enhanced Discord Assistant (AIDA)",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7",
+    "openai": "^4.76.0",
+    "together-ai": "^0.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "jest": "^29.7.0"
+  }
+}
