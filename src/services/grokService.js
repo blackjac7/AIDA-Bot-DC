@@ -14,7 +14,7 @@ export async function generateResponse(prompt) {
         {
           role: "system",
           content:
-            "You are AIDA, a helpful assistant. Answers User with Max length of character is less than 1999",
+            "You are AIDA, a helpful assistant. Your maximum answer length is less than 1999 characters",
         },
         { role: "user", content: prompt },
       ],
