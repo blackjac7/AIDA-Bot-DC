@@ -31,17 +31,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # Bagian CD: Install Heroku CLI
-      - name: Install Heroku CLI
-        run: curl https://cli-assets.heroku.com/install.sh | sh
-
-      # Bagian CD: Login ke Heroku menggunakan API Key
-      - name: Authenticate Heroku CLI
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          echo "$HEROKU_API_KEY" | heroku auth:login --stdin
-
       # Bagian CD: Set Heroku Config Vars jika semua tes berhasil
       - name: Set Heroku Config Vars
         if: success() # Hanya dijalankan jika semua tes berhasil
@@ -52,11 +41,11 @@ jobs:
             GROK_API_KEY=${{ secrets.GROK_API_KEY }} \
             TOGETHER_API_KEY=${{ secrets.TOGETHER_API_KEY }} --app aida-bot
 
-      # Bagian CD (Continuous Deployment): Deploy ke Heroku jika semua tes berhasil
+      # Bagian CD: Deploy ke Heroku jika semua tes berhasil
       - name: Deploy to Heroku
         if: success() # Hanya dijalankan jika semua tes berhasil
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: |
-          git remote | grep heroku || git remote add heroku https://git.heroku.com/aida-bot.git
-          git push heroku main
+        uses: akhileshns/heroku-deploy@v3.13.15
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "aida-bot"
+          heroku_email: "febriansyah705@gmail.com"
