@@ -2,7 +2,7 @@
 
 AI-Enhanced Discord Assistant (AIDA)
 
-![Node.js CI](https://github.com/blackjac7/AIDA-Bot-DC/actions/workflows/test.yml/badge.svg)
+![Node.js CI](https://github.com/blackjac7/AIDA-Bot-DC/actions/workflows/main.yml/badge.svg)
 
 ## Description
 
