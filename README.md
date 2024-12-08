@@ -2,7 +2,7 @@
 
 AI-Enhanced Discord Assistant (AIDA)
 
-![Node.js CI](https://github.com/blackjac7/aida-dc-bot/actions/workflows/test.yml/badge.svg)
+![Node.js CI](https://github.com/blackjac7/AIDA-Bot-DC/actions/workflows/test.yml/badge.svg)
 
 ## Description
 
@@ -19,8 +19,8 @@ AIDA Bot DC is an AI-enhanced Discord bot that can handle text and image command
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/blackjac7/aida-dc-bot.git
-   cd aida-dc-bot
+   git clone https://github.com/blackjac7/AIDA-Bot-DC.git
+   cd AIDA-Bot-DC
    ```
 
 2. Install dependencies:
