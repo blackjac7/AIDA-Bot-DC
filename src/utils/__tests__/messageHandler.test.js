@@ -80,6 +80,6 @@ describe("extractQuestion", () => {
   it("should return an empty string if there is no content after the prefix and only space exists", () => {
     const content = "!ask "; // Hanya spasi setelah prefix
     const question = extractQuestion(content, "!ask");
-    expect(question).toBe("a"); // Harus mengembalikan string kosong
+    expect(question).toBe(""); // Harus mengembalikan string kosong
   });
 });
