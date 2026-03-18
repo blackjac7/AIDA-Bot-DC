@@ -6,12 +6,12 @@ AI-Enhanced Discord Assistant (AIDA)
 
 ## Description
 
-AI-Enhanced Discord Assistant (AIDA) Bot is an AI-enhanced Discord bot that can handle text and image commands. It uses Grok X for generating text responses and Together AI for generating images.
+AI-Enhanced Discord Assistant (AIDA) Bot is an AI-enhanced Discord bot that can handle text and image commands. It uses Grok X for generating text responses and Pollinations.ai for generating images.
 
 ## Features
 
-- Responds to text commands with AI-generated responses.
-- Generates images based on user prompts.
+- Responds to text commands (`!ask`) with AI-generated responses.
+- Generates images based on user prompts (`!image`).
 - Supports custom prefixes for text and image commands.
 
 ## Installation
@@ -33,7 +33,6 @@ AI-Enhanced Discord Assistant (AIDA) Bot is an AI-enhanced Discord bot that can 
    ```env
    DISCORD_TOKEN=your_discord_token
    GROK_API_KEY=your_grok_api_key
-   TOGETHER_API_KEY=your_together_api_key
    ```
 
 ## Usage
@@ -44,7 +43,7 @@ AI-Enhanced Discord Assistant (AIDA) Bot is an AI-enhanced Discord bot that can 
    npm start
    ```
 
-2. Interact with the bot on your Discord server using the configured prefixes.
+2. Interact with the bot on your Discord server using the default prefixes (`!ask` for text and `!image` for images).
 
 ## Running Tests
 
@@ -60,7 +59,6 @@ The bot configuration is managed through the `src/config.js` file and environmen
 
 - `DISCORD_TOKEN`: Your Discord bot token.
 - `GROK_API_KEY`: Your Grok API key.
-- `TOGETHER_API_KEY`: Your Together AI API key.
 
 ## Contributing
 
