@@ -72,15 +72,23 @@ export class AIDABot {
       return message.reply("Please provide a prompt for the image.");
     }
 
-    await message.channel.sendTyping();
-    const imageBase64 = await generateImage(prompt);
-    const buffer = Buffer.from(imageBase64, "base64");
-    const attachment = new AttachmentBuilder(buffer, { name: "image.png" });
+    try {
+      await message.channel.sendTyping();
+      // Wait for the Pollinations API to generate and download the image buffer
+      const buffer = await generateImage(prompt);
 
-    await message.reply({ files: [attachment] });
+      const attachment = new AttachmentBuilder(buffer, { name: "image.png" });
+      await message.reply({ files: [attachment] });
+    } catch (error) {
+      console.error("Image generation failed:", error);
+      await message.reply("Sorry, I couldn't generate the image right now. Please try again later.");
+    }
   }
 
   async start() {
+    if (!config.discord.token) {
+      throw new Error("Missing Discord Bot Token in environment variables.");
+    }
     await this.client.login(config.discord.token);
   }
 }

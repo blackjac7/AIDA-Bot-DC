@@ -21,7 +21,7 @@ export async function generateResponse(prompt) {
     });
     return completion.choices[0]?.message?.content || "No response available.";
   } catch (error) {
-    console.error("Groq API Error:", error);
+    console.error("Grok/OpenAI API Error:", error);
     throw new Error("Failed to generate response.");
   }
 }
