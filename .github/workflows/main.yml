@@ -15,11 +15,11 @@ jobs:
     steps:
       # Bagian CI (Continuous Integration): Checkout kode dari repositori
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Bagian CI: Setup Node.js environment
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -30,6 +30,10 @@ jobs:
       # Bagian CI: Jalankan semua tes untuk memastikan kode bebas bug
       - name: Run tests
         run: npm test
+
+      # Install Heroku CLI
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
 
       # Bagian CD: Set Heroku Config Vars jika semua tes berhasil
       - name: Set Heroku Config Vars
