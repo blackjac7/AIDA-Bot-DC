@@ -1,22 +1,26 @@
-import Together from "together-ai";
 import { config } from "../config.js";
 
-const together = new Together({ apiKey: config.together.apiKey });
-
+/**
+ * Generates an image using Pollinations.ai free API.
+ * @param {string} prompt - The description of the image to generate.
+ * @returns {Promise<Buffer>} A Promise that resolves to the image Buffer.
+ */
 export async function generateImage(prompt) {
   try {
-    const response = await together.images.create({
-      model: config.together.model,
-      prompt,
-      width: config.together.width,
-      height: config.together.height,
-      steps: config.together.steps,
-      n: 1,
-      response_format: "b64_json",
-    });
-    return response.data[0].b64_json;
+    const encodedPrompt = encodeURIComponent(prompt);
+    // Add parameters to the URL like width, height, and model to customize generation
+    const url = `${config.image.baseURL}/${encodedPrompt}?width=${config.image.width}&height=${config.image.height}&model=${config.image.model}&nologo=true`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image: ${response.statusText}`);
+    }
+
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer);
   } catch (error) {
-    console.error("Together AI Error:", error);
+    console.error("Pollinations.ai Image Service Error:", error);
     throw new Error("Failed to generate image.");
   }
 }

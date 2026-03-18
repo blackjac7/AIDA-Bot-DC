@@ -12,11 +12,10 @@ export const config = {
     model: "grok-beta",
     baseURL: "https://api.x.ai/v1",
   },
-  together: {
-    apiKey: process.env.TOGETHER_API_KEY,
-    model: "black-forest-labs/FLUX.1-schnell-Free",
+  image: {
+    baseURL: "https://image.pollinations.ai/prompt",
+    model: "flux",
     width: 1024,
-    height: 768,
-    steps: 4,
+    height: 1024,
   },
 };
